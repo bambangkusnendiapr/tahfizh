@@ -20,7 +20,7 @@ class KelasController extends Controller
     {
         // $waktu = now()->format('d.m.Y H:i:s');
         // return $waktu;
-        if(Auth::user()->isAbleTo('kelas-read')) {
+        if (Auth::user()->isAbleTo('kelas-read')) {
             $kelas = Kelas::get();
             return view('admin.kelas.index', compact('kelas'));
         }
@@ -45,17 +45,17 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()->isAbleTo('kelas-create')) {
+        if (Auth::user()->isAbleTo('kelas-create')) {
             $this->validate($request, [
                 'kelas' => ['required', 'string', 'max:255', 'unique:kelas_tb,kelas_nama']
             ]);
-    
+
             $kelas = new Kelas;
             $kelas->kelas_nama = $request->kelas;
             $kelas->kelas_ket  = $request->ket;
             $kelas->kelas_warna  = $request->warna;
             $kelas->save();
-    
+
             return redirect()->route('kelas.index')->with('success', 'Data Berhasil Disimpan');
         }
         return $this->_akses();
@@ -70,7 +70,7 @@ class KelasController extends Controller
     public function show($id)
     {
         $kelas = Kelas::find($id);
-        if($kelas) {
+        if ($kelas) {
             $santri = Santri::where('kelas_id', $id)->get();
             return view('admin.kelas.show', compact('santri', 'kelas'));
         }
@@ -97,16 +97,16 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::user()->isAbleTo('kelas-update')) {
+        if (Auth::user()->isAbleTo('kelas-update')) {
             $this->validate($request, [
-                'kelas' => ['required', 'string', 'max:255', 'unique:kelas_tb,kelas_nama']
+                'kelas' => ['required', 'string', 'max:255']
             ]);
-    
+
             $kelas = Kelas::find($id);
             $kelas->kelas_nama = $request->kelas;
             $kelas->kelas_ket  = $request->ket;
             $kelas->save();
-    
+
             return redirect()->route('kelas.index')->with('success', 'Data Berhasil Diedit');
         }
         return $this->_akses();
@@ -120,17 +120,18 @@ class KelasController extends Controller
      */
     public function destroy($id)
     {
-        if(Auth::user()->isAbleTo('kelas-delete')) {
+        if (Auth::user()->isAbleTo('kelas-delete')) {
             $kelas = Kelas::find($id);
             $kelas->delete();
-                
-            return redirect()->route('kelas.index')->with('success', 'Data Berhasil Dihapus');    
+
+            return redirect()->route('kelas.index')->with('success', 'Data Berhasil Dihapus');
         }
 
         return $this->_akses();
     }
 
-    private function _akses() {
+    private function _akses()
+    {
         return redirect()->route('dashboard')->with('warning', 'Anda Tidak Memiliki Akses');
     }
 }

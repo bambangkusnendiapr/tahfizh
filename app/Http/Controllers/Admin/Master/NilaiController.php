@@ -16,7 +16,7 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->isAbleTo('nilai-read')) {
+        if (Auth::user()->isAbleTo('nilai-read')) {
             $nilai = Nilai::get();
             return view('admin.nilai.index', compact('nilai'));
         }
@@ -86,7 +86,7 @@ class NilaiController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nilai' => ['required', 'string', 'max:255', 'unique:nilai_tb,nilai_nama'],
+            'nilai' => ['required', 'string', 'max:255'],
             'ket' => ['required', 'string', 'max:255']
         ]);
 
@@ -94,7 +94,7 @@ class NilaiController extends Controller
         $nilai->nilai_nama = $request->nilai;
         $nilai->nilai_ket  = $request->ket;
         $nilai->save();
-        
+
         return redirect()->route('nilai.index')->with('success', 'Data Berhasil Diedit');
     }
 
@@ -108,11 +108,12 @@ class NilaiController extends Controller
     {
         $nilai = Nilai::find($id);
         $nilai->delete();
-            
+
         return redirect()->route('nilai.index')->with('success', 'Data Berhasil Dihapus');
     }
 
-    private function _akses() {
+    private function _akses()
+    {
         return redirect()->route('dashboard')->with('warning', 'Anda Tidak Memiliki Akses');
     }
 }

@@ -43,33 +43,33 @@
           </div>
           @endpermission
           <div class="card-body">
-          <table id="example1" class="table table-sm table-striped">
-            <thead>
-            <tr class="text-center">
-              <th>#</th>
-              <th>Nilai</th>
-              <th>Keterangan</th>
-              <th>Aksi</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($nilai as $data)
-            <tr>
-              <td class="align-middle text-center">{{ $loop->iteration }}</td>
-              <td>{{ $data->nilai_nama }}</td>
-              <td>{{ $data->nilai_ket }}</td>
-              <td class="align-middle text-center">
-                @permission('nilai-update')
-                <a href="#" data-target="#modal-edit{{ $data->id }}" class="btn btn-warning btn-sm" data-toggle="modal"><i class="fas fa-edit"></i></a>
-                @endpermission
-                @permission('nilai-delete')
-                <a href="#" data-target="#modal-hapus{{ $data->id }}" class="btn btn-danger btn-sm" data-toggle="modal"><i class="fas fa-trash"></i></a>
-                @endpermission
-              </td>
-            </tr>
-            @endforeach
-            </tbody>
-          </table>
+            <table id="example1" class="table table-sm table-striped">
+              <thead>
+                <tr class="text-center">
+                  <th>#</th>
+                  <th>Nilai</th>
+                  <th>Keterangan</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($nilai as $data)
+                <tr>
+                  <td class="align-middle text-center">{{ $loop->iteration }}</td>
+                  <td>{{ $data->nilai_nama }}</td>
+                  <td>{{ $data->nilai_ket }}</td>
+                  <td class="align-middle text-center">
+                    @permission('nilai-update')
+                    <a href="#" data-target="#modal-edit{{ $data->id }}" class="btn btn-warning btn-sm" data-toggle="modal"><i class="fas fa-edit"></i></a>
+                    @endpermission
+                    @permission('nilai-delete')
+                    <a href="#" data-target="#modal-hapus{{ $data->id }}" class="btn btn-danger btn-sm" data-toggle="modal"><i class="fas fa-trash"></i></a>
+                    @endpermission
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
           </div>
           <!-- /.card-body -->
         </div>
@@ -90,23 +90,23 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form action="{{ route('nilai.store') }}" method="POST">
+      <form action="{{ route('nilai.store') }}" method="POST">
         @csrf
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="nilai">Nilai</label>@error('nilai') <span class="text-danger">{{ $message }}</span> @enderror
-              <input type="text" required name="nilai" class="form-control @error('nilai') is-invalid @enderror" id="nilai" placeholder="Masukan Huruf Nilai">
-            </div>
-            <div class="form-group">
-              <label for="ket">Keterangan</label>@error('ket') <span class="text-danger">{{ $message }}</span> @enderror
-              <input type="text" required name="ket" class="form-control @error('ket') is-invalid @enderror" id="ket" placeholder="Masukan Keterangan nilai">
-            </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="nilai">Nilai</label>@error('nilai') <span class="text-danger">{{ $message }}</span> @enderror
+            <input type="text" required name="nilai" class="form-control @error('nilai') is-invalid @enderror" id="nilai" placeholder="Masukan Huruf Nilai">
           </div>
-          <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success">Simpan</button>
+          <div class="form-group">
+            <label for="ket">Keterangan</label>@error('ket') <span class="text-danger">{{ $message }}</span> @enderror
+            <input type="text" required name="ket" class="form-control @error('ket') is-invalid @enderror" id="ket" placeholder="Masukan Keterangan nilai">
           </div>
-        </form>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success">Simpan</button>
+        </div>
+      </form>
     </div>
     <!-- /.modal-content -->
   </div>
@@ -127,15 +127,15 @@
       <form action="{{ route('nilai.destroy', $data->id) }}" method="post" class="d-inline" id="id_form">
         @method('delete')
         @csrf
-          <div class="modal-body">
-            <input type="hidden" value="" id="{{ $data->id }}">
-            <p>Yakin ingin dihapus ?</p>
-          </div>
-          <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-            <button type="submit" class="btn btn-danger">Hapus</button>
-          </div>
-        </form>
+        <div class="modal-body">
+          <input type="hidden" value="" id="{{ $data->id }}">
+          <p>Yakin ingin dihapus ?</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+          <button type="submit" class="btn btn-danger">Hapus</button>
+        </div>
+      </form>
     </div>
     <!-- /.modal-content -->
   </div>
@@ -154,8 +154,8 @@
         </button>
       </div>
       <form action="{{ route('nilai.update', $data->id) }}" method="POST">
-      @method('PATCH')
-      @csrf
+        @method('PATCH')
+        @csrf
         <div class="modal-body">
           <div class="form-group">
             <label for="nilai">Nilai</label>@error('nilai') <span class="text-danger">{{ $message }}</span> @enderror
@@ -205,9 +205,12 @@
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script>
-  $(function () {
+  $(function() {
     $("#example1").DataTable({
-      "responsive": false, "lengthChange": true, "autoWidth": false, "scrollX": true,
+      "responsive": false,
+      "lengthChange": true,
+      "autoWidth": false,
+      "scrollX": true,
       // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({

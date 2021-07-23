@@ -43,34 +43,34 @@
           </div>
           @endpermission
           <div class="card-body">
-          <table id="example1" class="table table-sm table-striped">
-            <thead>
-            <tr class="text-center">
-              <th>#</th>
-              <th>Kelas</th>
-              <th>Keterangan</th>
-              <th>Aksi</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($kelas as $data)
-            <tr>
-              <td class="align-middle text-center">{{ $loop->iteration }}</td>
-              <td>{{ $data->kelas_nama }}</td>
-              <td>{{ $data->kelas_ket }}</td>
-              <td class="align-middle text-center">
-                <a href="{{ route('kelas.show', $data->id) }}" class="btn btn-primary btn-sm">Lihat Santri</a>
-                @permission('kelas-update')
-                <a href="#" data-target="#modal-edit{{ $data->id }}" class="btn btn-warning btn-sm" data-toggle="modal"><i class="fas fa-edit"></i></a>
-                @endpermission
-                @permission('kelas-delete')
-                <a href="#" data-target="#modal-hapus{{ $data->id }}" class="btn btn-danger btn-sm" data-toggle="modal"><i class="fas fa-trash"></i></a>
-                @endpermission
-              </td>
-            </tr>
-            @endforeach
-            </tbody>
-          </table>
+            <table id="example1" class="table table-sm table-striped">
+              <thead>
+                <tr class="text-center">
+                  <th>#</th>
+                  <th>Kelas</th>
+                  <th>Keterangan</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($kelas as $data)
+                <tr>
+                  <td class="align-middle text-center">{{ $loop->iteration }}</td>
+                  <td>{{ $data->kelas_nama }}</td>
+                  <td>{{ $data->kelas_ket }}</td>
+                  <td class="align-middle text-center">
+                    <a href="{{ route('kelas.show', $data->id) }}" class="btn btn-primary btn-sm">Lihat Santri</a>
+                    @permission('kelas-update')
+                    <a href="#" data-target="#modal-edit{{ $data->id }}" class="btn btn-warning btn-sm" data-toggle="modal"><i class="fas fa-edit"></i></a>
+                    @endpermission
+                    @permission('kelas-delete')
+                    <a href="#" data-target="#modal-hapus{{ $data->id }}" class="btn btn-danger btn-sm" data-toggle="modal"><i class="fas fa-trash"></i></a>
+                    @endpermission
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
           </div>
           <!-- /.card-body -->
         </div>
@@ -91,24 +91,24 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <form action="{{ route('kelas.store') }}" method="POST">
+      <form action="{{ route('kelas.store') }}" method="POST">
         @csrf
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="kelas">Kelas</label>@error('kelas') <span class="text-danger">{{ $message }}</span> @enderror
-              <input type="text" required name="kelas" class="form-control @error('kelas') is-invalid @enderror" id="kelas" placeholder="Masukan Kelas">
-            </div>
-            <div class="form-group">
-              <label for="ket">Keterangan</label>@error('ket') <span class="text-danger">{{ $message }}</span> @enderror
-              <input type="text" required name="ket" class="form-control @error('ket') is-invalid @enderror" id="ket" placeholder="Masukan Keterangan kelas">
-            </div>
-              <input type="hidden" name="warna" class="form-control" id="warna" value="">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="kelas">Kelas</label>@error('kelas') <span class="text-danger">{{ $message }}</span> @enderror
+            <input type="text" required name="kelas" class="form-control @error('kelas') is-invalid @enderror" id="kelas" placeholder="Masukan Kelas">
           </div>
-          <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success">Simpan</button>
+          <div class="form-group">
+            <label for="ket">Keterangan</label>@error('ket') <span class="text-danger">{{ $message }}</span> @enderror
+            <input type="text" name="ket" class="form-control @error('ket') is-invalid @enderror" id="ket" placeholder="Masukan Keterangan kelas">
           </div>
-        </form>
+          <input type="hidden" name="warna" class="form-control" id="warna" value="">
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success">Simpan</button>
+        </div>
+      </form>
     </div>
     <!-- /.modal-content -->
   </div>
@@ -129,15 +129,15 @@
       <form action="{{ route('kelas.destroy', $data->id) }}" method="post" class="d-inline" id="id_form">
         @method('delete')
         @csrf
-          <div class="modal-body">
-            <input type="hidden" value="" id="{{ $data->id }}">
-            <p>Yakin ingin dihapus ?</p>
-          </div>
-          <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-            <button type="submit" class="btn btn-danger">Hapus</button>
-          </div>
-        </form>
+        <div class="modal-body">
+          <input type="hidden" value="" id="{{ $data->id }}">
+          <p>Yakin ingin dihapus ?</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+          <button type="submit" class="btn btn-danger">Hapus</button>
+        </div>
+      </form>
     </div>
     <!-- /.modal-content -->
   </div>
@@ -156,8 +156,8 @@
         </button>
       </div>
       <form action="{{ route('kelas.update', $data->id) }}" method="POST">
-      @method('PATCH')
-      @csrf
+        @method('PATCH')
+        @csrf
         <div class="modal-body">
           <div class="form-group">
             <label for="kelas">Kelas</label>@error('kelas') <span class="text-danger">{{ $message }}</span> @enderror
@@ -165,7 +165,7 @@
           </div>
           <div class="form-group">
             <label for="ket">Keterangan</label>@error('ket') <span class="text-danger">{{ $message }}</span> @enderror
-            <input type="text" required name="ket" class="form-control @error('ket') is-invalid @enderror" id="ket" value="{{ $data->kelas_ket }}">
+            <input type="text" name="ket" class="form-control @error('ket') is-invalid @enderror" id="ket" value="{{ $data->kelas_ket }}">
           </div>
         </div>
         <div class="modal-footer justify-content-between">
@@ -207,9 +207,12 @@
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script>
-  $(function () {
+  $(function() {
     $("#example1").DataTable({
-      "responsive": false, "lengthChange": true, "autoWidth": false, "scrollX": true,
+      "responsive": false,
+      "lengthChange": true,
+      "autoWidth": false,
+      "scrollX": true,
       // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
@@ -222,12 +225,12 @@
       "responsive": true,
     });
 
-    $( "#tombolTambah" ).click(function() {
-      var symbols,color;
+    $("#tombolTambah").click(function() {
+      var symbols, color;
       symbols = "0123456789ABCDEF";
 
       color = "#"
-      for(var i=0; i<6; i++){
+      for (var i = 0; i < 6; i++) {
         color = color + symbols[Math.floor(Math.random() * 16)];
       }
       $("#warna").val(color);

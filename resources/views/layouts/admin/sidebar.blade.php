@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-success elevation-4">
   <!-- Brand Logo -->
-  <a href="../../index3.html" class="brand-link">
+  <a href="{{ route('front.index') }}" class="brand-link">
     <img src="{{ asset('images/profil/'.$profil->profil_logo ) }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="brand-text font-weight-light">{{ $profil->profil_nama }}</span>
   </a>
@@ -13,14 +13,14 @@
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         @if(Auth::user()->image)
-          @role('admin')
-          <img src="{{ asset('images/guru/')}}/{{Auth::user()->image}}" class="img-circle elevation-2" alt="User Image"/>
-          @endrole
-          @role('santri|user')
-          <img src="{{ asset('images/santri/')}}/{{Auth::user()->image}}" class="img-circle elevation-2" alt="User Image"/>
-          @endrole
+        @role('admin')
+        <img src="{{ asset('images/guru/')}}/{{Auth::user()->image}}" class="img-circle elevation-2" alt="User Image" />
+        @endrole
+        @role('santri|user')
+        <img src="{{ asset('images/santri/')}}/{{Auth::user()->image}}" class="img-circle elevation-2" alt="User Image" />
+        @endrole
         @else
-          <img src="{{ asset('images/muslim.jpg') }}" class="img-circle elevation-2" alt="User Image">
+        <img src="{{ asset('images/muslim.jpg') }}" class="img-circle elevation-2" alt="User Image">
         @endif
       </div>
       <div class="info">
@@ -32,9 +32,9 @@
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         @if(Auth::user()->image)
-          <img src="{{ asset('images/guru/')}}/{{Auth::user()->image}}" class="img-circle elevation-2" alt="User Image"/>
+        <img src="{{ asset('images/guru/')}}/{{Auth::user()->image}}" class="img-circle elevation-2" alt="User Image" />
         @else
-          <img src="{{ asset('images/muslim.jpg') }}" class="img-circle elevation-2" alt="User Image">
+        <img src="{{ asset('images/muslim.jpg') }}" class="img-circle elevation-2" alt="User Image">
         @endif
       </div>
       <div class="info">
@@ -57,7 +57,7 @@
             </p>
           </a>
         </li>
-        
+
         @permission('pendaftaran-read')
         <li class="nav-item">
           <a href="{{ route('pendaftaran') }}" class="nav-link @yield('pendaftaran')">
@@ -100,7 +100,7 @@
             @permission('kelas-read')
             <li class="nav-item">
               <a href="{{ route('kelas.index') }}" class="nav-link @yield('kelas')">
-                
+
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kelas</p>
               </a>
@@ -206,17 +206,16 @@
         @endrole
         <!-- Logout -->
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('logout') }}"
-              onclick="event.preventDefault();
+          <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-              <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>
-                Logout
-              </p>
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <p>
+              Logout
+            </p>
           </a>
 
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-              @csrf
+            @csrf
           </form>
         </li>
       </ul>
