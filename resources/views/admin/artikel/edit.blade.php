@@ -56,7 +56,7 @@
                     <label>Penulis</label>
                     <select class="form-control select2bs4" name="penulis">
                       @foreach($user as $data)
-                        <option value="{{ $data->id }}" {{ $data->id == $artikel->penulis ? 'selected':'' }}>{{ $data->name }}</option>
+                        <option value="{{ $data->id }}" {{ $data->id == $artikel->user_id ? 'selected':'' }}>{{ $data->name }}</option>
                       @endforeach
                     </select>
                   </div>                  

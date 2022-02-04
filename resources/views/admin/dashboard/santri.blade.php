@@ -96,7 +96,7 @@
       <div class="col-md-12">
         <div class="card card-outline card-success">
           <div class="card-header">
-            <h3 class="card-title text-success font-weight-bold">Hafalan Surat</h3>
+            <h3 class="card-title text-success font-weight-bold">Hafalan Surat {{ $santri_id->suratakhir->surat_nama }}</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">

@@ -111,8 +111,10 @@
                 <strong>Email</strong>
                 <p class="text-muted">{{ $data->user->email }}</p>
 
+                @role('superadmin|admin|guru')
                 <strong>Hafalan</strong>
                 <p class="text-muted">{{ $data->suratakhir->surat_nama }}</p>
+                @endrole
 
                 <strong>L/P</strong>
                 <p class="text-muted">{{ $data->guru_jk }}</p>

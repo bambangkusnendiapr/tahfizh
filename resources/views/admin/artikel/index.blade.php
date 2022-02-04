@@ -68,9 +68,7 @@
               <td><a href="{{ route('front.artikel.single', $data->artikel_slug) }}" target="_blank">{{ $data->artikel_judul }}</a></td>
               <td>{{ $data->kategori->kategori_nama }}</td>
               <td>
-                @foreach($user->where('id', $data->penulis) as $value)
-                  {{ $value->name }}
-                @endforeach
+                {{ $data->user->name }}
               </td>
               <td>{{ $data->artikel_tgl }}</td>
               <td>{{ $data->user->name }}</td>

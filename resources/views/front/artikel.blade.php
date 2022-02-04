@@ -46,9 +46,7 @@ $profil = Profil::find(1);
 
                 <div class="entry-meta">
                   <ul>
-                    <li class="d-flex align-items-center"><i class="icofont-user"></i> @foreach($user->where('id', $data->penulis) as $value)
-                      {{ $value->name }}
-                    @endforeach</li>
+                    <li class="d-flex align-items-center"><i class="icofont-user"></i> {{ $data->user->name }}</li>
                     <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> {{ Carbon\Carbon::parse($data->artikel_tgl)->format('d/M/Y') }}</li>
                   </ul>
                 </div>

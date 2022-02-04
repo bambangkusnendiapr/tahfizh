@@ -27,7 +27,7 @@ $profil = Profil::find(1);
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="{{ route('front.index') }}"><img src="{{ asset('images/profil/'.$profil->profil_logo ) }}" alt=""></a>
+      <a href="{{ route('front.index') }}"><img src="{{ asset('images/profil/'.$profil->profil_logo ) }}" width="200px" alt=""></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">

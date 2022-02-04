@@ -55,7 +55,7 @@
                 <td class="align-middle text-center">{{ $loop->iteration }}</td>
                 <td>
                   @if($data->user->image)
-                    <img src="{{ asset('images/')}}/{{$data->user->image}}" class="img-circle" width="80"/>
+                    <img src="{{ asset('images/santri/')}}/{{$data->user->image}}" class="img-circle" width="80"/>
                   @endif
                 </td>
                 <td>{{ $data->user->name }}</td>
@@ -92,7 +92,7 @@
       </div>
         <div class="modal-body">
           @if($data->user->image)
-            <img src="{{ asset('images/')}}/{{$data->user->image}}" class="img-circle" width="80"/><br>
+            <img src="{{ asset('images/santri/')}}/{{$data->user->image}}" class="img-circle" width="80"/><br>
           @endif
 
           <div class="row">

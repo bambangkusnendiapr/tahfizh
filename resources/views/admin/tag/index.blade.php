@@ -29,7 +29,7 @@
       <div class="col-12">
         <!-- Default box -->
         <div class="card card-outline card-success">
-          @permission('tag-create')
+          @role('superadmin|admin')
           <div class="card-header">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
               <i class="fas fa-plus"></i> Tambah Data
@@ -41,7 +41,7 @@
               </button>
             </div>
           </div>
-          @endpermission
+          @endrole
           <div class="card-body">
           <table id="example1" class="table table-sm table-striped">
             <thead>
@@ -59,12 +59,10 @@
               <td>{{ $data->tag_nama }}</td>
               <td>{{ $data->tag_ket }}</td>
               <td class="align-middle text-center">
-                @permission('tag-update')
+                @role('superadmin|admin')
                 <a href="#" data-target="#modal-edit{{ $data->id }}" class="btn btn-warning btn-sm" data-toggle="modal"><i class="fas fa-edit"></i></a>
-                @endpermission
-                @permission('tag-delete')
                 <a href="#" data-target="#modal-hapus{{ $data->id }}" class="btn btn-danger btn-sm" data-toggle="modal"><i class="fas fa-trash"></i></a>
-                @endpermission
+                @endrole
               </td>
             </tr>
             @endforeach

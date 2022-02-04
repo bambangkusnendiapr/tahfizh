@@ -46,7 +46,7 @@
               <th>#</th>
               <th>Foto</th>
               <th>Nama</th>
-              <th>Email</th>
+              <th>Panggilan</th>
               <th>L/P</th>
               <th>Aksi</th>
             </tr>
@@ -63,7 +63,7 @@
                   @endif
                 </td>
                 <td class="align-middle">{{ $data->user->name }}</td>
-                <td class="text-center align-middle">{{ $data->user->email }}</td>
+                <td class="text-center align-middle">{{ $data->santri_panggil }}</td>
                 <td class="text-center align-middle">{{ $data->santri_jk }}</td>
                 <td class="text-center align-middle">
                   @permission('santri-buku-read')
@@ -111,14 +111,8 @@
               <strong>Nama</strong>
                 <p class="text-muted">{{ $data->user->name }}</p>
 
-                <strong>Email</strong>
-                <p class="text-muted">{{ $data->user->email }}</p>
-
                 <strong>Nama Panggilan</strong>
                 <p class="text-muted">{{ $data->santri_panggil }}</p>
-
-                <strong>NIK</strong>
-                <p class="text-muted">{{ $data->santri_nik }}</p>
 
                 <strong>Tempat Lahir</strong>
                 <p class="text-muted">{{ $data->santri_lahir }}</p>
@@ -134,6 +128,14 @@
                 
                 <strong>Umur Saat Daftar</strong>
                 <p class="text-muted">{{ $data->santri_umur }}</p>
+
+                @role('superadmin|admin|guru')
+                <strong>Email</strong>
+                <p class="text-muted">{{ $data->user->email }}</p>
+                
+                <strong>NIK</strong>
+                <p class="text-muted">{{ $data->santri_nik }}</p>
+                @endrole
             </div>
 
             <div class="col-md 6">              
@@ -152,6 +154,7 @@
                 <strong>Keterangan</strong>
                 <p class="text-muted">{{ $data->santri_ket }}</p>
 
+                @role('superadmin|admin|guru')
                 <strong>Orang Tua</strong>
                 <p class="text-muted">{{ $data->santri_ortu }}</p>
 
@@ -163,6 +166,7 @@
                 
                 <strong>ALamat ortu</strong>
                 <p class="text-muted">{{ $data->santri_ortu_alamat }}</p>
+                @endrole
             </div>
           </div>
 

@@ -21,7 +21,7 @@ Route::get('/artikel/tag/{id}', 'Front\FrontController@artikel_tag')->name('arti
 //Komentar
 Route::resource('komentar', 'Admin\KomentarController');
 
-Route::post('daftar', 'Admin\UserController@daftar')->name('daftar');
+Route::post('/daftar', 'Admin\UserController@daftar')->name('daftar');
 
 Auth::routes();
 

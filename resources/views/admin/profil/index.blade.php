@@ -50,22 +50,6 @@
                   </div>
                 </div>
               </div>
-
-              <div class="col-md-6">
-                <div class="form-group">
-                    <img id="img" src="{{ url('images/profil/'.$profil->profil_favicon)}}" width="100px" height="100px"/>
-                </div>
-                <div class="form-group"> 
-                  <label><strong>Favicon</strong></label>@error('filefoto') <span class="text-danger font-italic">{{ $message }}</span>@enderror
-                  <div class="custom-file mb-3">
-                      <input type="file" name="filefoto" class="custom-file-input @error('filefoto') is-invalid @enderror" id="filefoto">
-                      <label class="custom-file-label" for="filefoto">Pilih Favicon</label>
-                      <div class="text-default">
-                        Max: 2mb
-                      </div>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div class="row">

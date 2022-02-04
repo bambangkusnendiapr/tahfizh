@@ -244,6 +244,11 @@ class GuruController extends Controller
 
     public function export() 
     {
-        return Excel::download(new GuruExport, 'guru.xlsx');
+
+        if(Auth::user()->hasRole('superadmin|admin')) {
+            return Excel::download(new GuruExport, 'guru.xlsx');
+        }
+
+        return redirect()->route('dashboard')->with('warning', 'Anda Tidak Memiliki Akses');
     }
 }

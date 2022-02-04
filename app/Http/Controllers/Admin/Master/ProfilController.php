@@ -17,7 +17,7 @@ class ProfilController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->isAbleTo('profil-read')) {
+        if(Auth::user()->hasRole('superadmin|admin')) {
             $profil = Profil::find(1);
             return view('admin.profil.index', compact('profil'));
         }

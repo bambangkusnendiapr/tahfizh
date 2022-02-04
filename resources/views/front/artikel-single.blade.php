@@ -39,9 +39,7 @@
 
               <div class="entry-meta">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="icofont-user"></i> @foreach($user->where('id', $artikel->penulis) as $value)
-                      {{ $value->name }}
-                    @endforeach</li>
+                  <li class="d-flex align-items-center"><i class="icofont-user"></i> {{ $artikel->user->name }}</li>
                   <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <time datetime="2020-01-01">{{ Carbon\Carbon::parse($artikel->artikel_tgl)->format('d/M/Y') }}</time></li>
                   <li class="d-flex align-items-center"><i class="icofont-comment"></i> {{ $artikel->komentar->count() }}</li>
                 </ul>
@@ -50,7 +48,7 @@
               <div class="entry-content">
                 <h3>{{ $artikel->artikel_judul }}</h3>
                 <p>
-                  {{ $artikel->artikel_isi }}
+                  {!! $artikel->artikel_isi !!}
                 </p>
 
               </div>
@@ -186,6 +184,7 @@
           data: formData,
           success: function(data) {
             // console.log(data)
+            location.reload();
             window.location.assign(`/artikel/${slug}/#komen`)
           },
         })

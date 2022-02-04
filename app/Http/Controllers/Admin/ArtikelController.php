@@ -55,6 +55,7 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->file('filefoto'));
         $this->validate($request, [
             'tgl' => ['required', 'date'],
             'kategori' => ['required'],
@@ -77,9 +78,9 @@ class ArtikelController extends Controller
         $artikel->artikel_slug   = time().Str::slug($request->judul, '-');
         $artikel->artikel_judul  = $request->judul;
         $artikel->artikel_isi    = $request->isi;
-        $artikel->user_id        = Auth::user()->id;
+        $artikel->user_id        = $request->penulis;
         $artikel->kategori_id    = $request->kategori;
-        $artikel->penulis        = $request->penulis;
+        $artikel->artikel_ket    = "-";
 
         if($request->hasFile('filefoto') == true){
     
@@ -168,9 +169,8 @@ class ArtikelController extends Controller
         $artikel->artikel_tgl    = $request->tgl;
         $artikel->artikel_judul  = $request->judul;
         $artikel->artikel_isi    = $request->isi;
-        $artikel->user_id        = Auth::user()->id;
+        $artikel->user_id        = $request->penulis;
         $artikel->kategori_id    = $request->kategori;
-        $artikel->penulis        = $request->penulis;
 
         if($request->hasFile('filefoto') == true)
         {
@@ -213,5 +213,10 @@ class ArtikelController extends Controller
         $artikel->delete();
         
         return redirect()->route('artikel.index')->with('success', 'Data Berhasil Dihapus');
+    }
+
+    private function _akses()
+    {
+        return redirect()->route('dashboard')->with('warning', 'Anda Tidak Memiliki Akses');
     }
 }

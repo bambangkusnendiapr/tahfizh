@@ -223,7 +223,7 @@
             <label for="menu_id" class="col-md-3 col-form-label text-md-right">{{ __('Menu') }}</label>
 
             <div class="col-md-7">
-                <select class="form-control option-select" name="menu_id" id="menu_id" style="width: 100%;">
+                <select class="form-control option-select" autofocus name="menu_id" id="menu_id" style="width: 100%;">
                     @if (count($menus))
                     @foreach ($menus as $menu)
                         <option value="{{ $menu->id }}" @foreach($menu->permissions as $per)

@@ -23,7 +23,7 @@ $profil = Profil::find(1);
 <div class="register-box mt-3">
 <br><br><br>
   <div class="register-logo">
-    <a href="{{ route('front.index') }}"><img src="{{ asset('images/profil/'.$profil->profil_logo ) }}" alt=""></a>
+    <a href="{{ route('front.index') }}"><img src="{{ asset('images/profil/'.$profil->profil_logo ) }}" width="200px" alt=""></a>
   </div>
 
   <div class="card">

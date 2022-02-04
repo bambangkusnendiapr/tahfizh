@@ -15,7 +15,7 @@ class Artikel extends Model
 
     public function penulis()
     {
-    	return $this->belongsTo('App\User', 'penulis');
+    	return $this->belongsTo('App\User', 'penulis', 'id');
     }
 
     public function user()
